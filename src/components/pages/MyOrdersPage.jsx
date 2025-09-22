@@ -168,7 +168,7 @@ function MyOrdersPage() {
                         </div>
                         <div>
                           <p className="text-secondary">Total</p>
-                          <p className="font-bold text-lg">${order.totals.grandTotal.toFixed(2)}</p>
+<p className="font-bold text-lg">${(order?.totals?.grandTotal ?? 0).toFixed(2)}</p>
                         </div>
                       </div>
                     </div>
