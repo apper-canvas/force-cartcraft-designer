@@ -12,7 +12,7 @@ const Header = ({ cartItemCount, onCartToggle, onSearch }) => {
   useEffect(() => {
     const fetchOrderCount = async () => {
       try {
-        const orders = await orderService.getUserOrders();
+const orders = await orderService.getOrders();
         setOrderCount(orders?.length || 0);
       } catch (error) {
         console.error('Failed to fetch order count:', error);
