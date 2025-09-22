@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import ApperIcon from "@/components/ApperIcon";
 import SearchBar from "@/components/molecules/SearchBar";
 import Badge from "@/components/atoms/Badge";
+import orderService from "@/services/api/orderService";
 
 const Header = ({ cartItemCount, onCartToggle, onSearch }) => {
+  const [orderCount, setOrderCount] = useState(0);
+
+  useEffect(() => {
+    const fetchOrderCount = async () => {
+      try {
+        const orders = await orderService.getUserOrders();
+        setOrderCount(orders?.length || 0);
+      } catch (error) {
+        console.error('Failed to fetch order count:', error);
+        setOrderCount(0);
+      }
+    };
+
+    fetchOrderCount();
+  }, []);
+
   const handleCartClick = () => {
     if (onCartToggle) {
       onCartToggle();
@@ -38,6 +56,20 @@ const Header = ({ cartItemCount, onCartToggle, onSearch }) => {
               className="w-full"
             />
           </div>
+
+{/* My Orders Link */}
+          <Link 
+            to="/orders" 
+            className="flex items-center gap-2 px-4 py-2 text-secondary hover:text-primary transition-colors duration-200"
+          >
+            <ApperIcon name="Package" size={20} />
+            <span className="hidden sm:inline">My Orders</span>
+            {orderCount > 0 && (
+              <Badge variant="accent" className="text-xs">
+                {orderCount}
+              </Badge>
+            )}
+          </Link>
 
           {/* Cart Button */}
           <div className="flex items-center gap-4">

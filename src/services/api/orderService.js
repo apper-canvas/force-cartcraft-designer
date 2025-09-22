@@ -5,6 +5,10 @@ class OrderService {
       payment: 'checkout_payment',
       orders: 'user_orders'
     };
+    
+    // Status progression simulation
+    this.statusProgression = ['processing', 'shipped', 'delivered'];
+    this.startStatusSimulation();
   }
 
   delay(ms) {
@@ -101,14 +105,50 @@ class OrderService {
     };
   }
 
-  // Order Processing
+// Order Processing
   generateOrderNumber() {
     const timestamp = Date.now().toString();
     const random = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
     return `CC${timestamp.slice(-6)}${random}`;
   }
 
-  async placeOrder(orderData) {
+  // Status simulation for realistic order tracking
+  startStatusSimulation() {
+    setInterval(() => {
+      this.updateOrderStatuses();
+    }, 30000); // Update every 30 seconds
+  }
+
+  updateOrderStatuses() {
+    const orders = JSON.parse(localStorage.getItem(this.storageKeys.orders) || '[]');
+    let hasUpdates = false;
+
+    orders.forEach(order => {
+      const currentIndex = this.statusProgression.indexOf(order.status);
+      const orderAge = Date.now() - new Date(order.orderDate).getTime();
+      
+      // Progress orders based on age
+      if (currentIndex < this.statusProgression.length - 1) {
+        const hoursOld = orderAge / (1000 * 60 * 60);
+        
+        if (order.status === 'processing' && hoursOld > 0.1) { // 6 minutes for demo
+          order.status = 'shipped';
+          order.shippedDate = new Date().toISOString();
+          hasUpdates = true;
+        } else if (order.status === 'shipped' && hoursOld > 0.2) { // 12 minutes for demo
+          order.status = 'delivered';
+          order.deliveredDate = new Date().toISOString();
+          hasUpdates = true;
+        }
+      }
+    });
+
+    if (hasUpdates) {
+      localStorage.setItem(this.storageKeys.orders, JSON.stringify(orders));
+    }
+  }
+
+async placeOrder(orderData) {
     await this.delay(1000); // Simulate processing time
     
     const orderNumber = this.generateOrderNumber();
@@ -124,7 +164,7 @@ class OrderService {
       shippingInfo: orderData.shippingInfo,
       paymentInfo: orderData.paymentInfo,
       totals: orderData.totals,
-      status: 'confirmed',
+      status: 'processing',
       trackingNumber: `1Z${Math.random().toString(36).substr(2, 9).toUpperCase()}`
     };
     
@@ -140,8 +180,9 @@ class OrderService {
     return order;
   }
 
-  async getOrderHistory() {
+async getOrderHistory() {
     await this.delay(200);
+    this.updateOrderStatuses(); // Ensure latest status
     const orders = JSON.parse(localStorage.getItem(this.storageKeys.orders) || '[]');
     return orders;
   }
@@ -152,6 +193,38 @@ class OrderService {
     return orders.find(order => order.orderNumber === orderNumber) || null;
   }
 
+  async getOrderCount() {
+    await this.delay(50);
+    const orders = JSON.parse(localStorage.getItem(this.storageKeys.orders) || '[]');
+    return orders.length;
+  }
+
+  // Reorder functionality
+  async reorderItems(orderNumber) {
+    await this.delay(300);
+    const order = await this.getOrderByNumber(orderNumber);
+    if (!order) {
+      throw new Error('Order not found');
+    }
+
+    // Return the items for adding to cart
+    return order.items.map(item => ({
+      Id: parseInt(item.productId),
+      title: item.title,
+      price: item.price,
+      image: item.image,
+      quantity: item.quantity
+    }));
+  }
+
+  getStatusProgress(status) {
+    const statusMap = {
+      'processing': { progress: 33, label: 'Processing', step: 1 },
+      'shipped': { progress: 66, label: 'Shipped', step: 2 },
+      'delivered': { progress: 100, label: 'Delivered', step: 3 }
+    };
+    return statusMap[status] || statusMap['processing'];
+  }
   // Validation Helpers
   validateShippingInfo(shippingData) {
     const required = ['firstName', 'lastName', 'email', 'phone', 'address', 'city', 'state', 'zipCode'];
@@ -194,7 +267,7 @@ class OrderService {
     }
     
     return true;
-  }
+}
 }
 
 const orderService = new OrderService();

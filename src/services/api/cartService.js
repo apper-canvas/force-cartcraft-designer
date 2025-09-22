@@ -37,17 +37,17 @@ class CartService {
     );
   }
 
-  // Simulate API delay
+// Simulate API delay
   delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  async getCart() {
+async getCart() {
     await this.delay(100);
     return { ...this.cart, items: [...this.cart.items] };
   }
 
-  async addItem(product, quantity = 1) {
+async addItem(product, quantity = 1) {
     await this.delay(200);
     
     const existingItemIndex = this.cart.items.findIndex(
@@ -65,6 +65,34 @@ class CartService {
         quantity: quantity,
         addedAt: new Date().toISOString()
       });
+    }
+
+    this.calculateTotals();
+    this.saveCart();
+    return { ...this.cart, items: [...this.cart.items] };
+  }
+
+  // Add multiple items for reorder functionality
+  async addMultipleItems(items) {
+    await this.delay(300);
+    
+    for (const item of items) {
+      const existingItemIndex = this.cart.items.findIndex(
+        cartItem => cartItem.productId === item.Id.toString()
+      );
+
+      if (existingItemIndex >= 0) {
+        this.cart.items[existingItemIndex].quantity += item.quantity;
+      } else {
+        this.cart.items.push({
+          productId: item.Id.toString(),
+          title: item.title,
+          price: item.price,
+          image: item.image,
+          quantity: item.quantity,
+          addedAt: new Date().toISOString()
+        });
+      }
     }
 
     this.calculateTotals();
@@ -118,12 +146,12 @@ async clearCart() {
     return { ...this.cart };
   }
 
-  async getCartForCheckout() {
+async getCartForCheckout() {
     await this.delay(100);
     return { ...this.cart };
   }
 
-  async getTotalItems() {
+async getTotalItems() {
     await this.delay(50);
     return this.cart.totalItems;
   }

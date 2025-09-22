@@ -7,6 +7,8 @@ import CheckoutShippingPage from "@/components/pages/CheckoutShippingPage";
 import CheckoutPaymentPage from "@/components/pages/CheckoutPaymentPage";
 import CheckoutReviewPage from "@/components/pages/CheckoutReviewPage";
 import CheckoutConfirmationPage from "@/components/pages/CheckoutConfirmationPage";
+import MyOrdersPage from "@/components/pages/MyOrdersPage";
+import OrderDetailsPage from "@/components/pages/OrderDetailsPage";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
           <Route path="/checkout/payment" element={<CheckoutPaymentPage />} />
           <Route path="/checkout/review" element={<CheckoutReviewPage />} />
           <Route path="/checkout/confirmation" element={<CheckoutConfirmationPage />} />
+          <Route path="/orders" element={<MyOrdersPage />} />
+          <Route path="/orders/:orderNumber" element={<OrderDetailsPage />} />
         </Routes>
         
         <ToastContainer

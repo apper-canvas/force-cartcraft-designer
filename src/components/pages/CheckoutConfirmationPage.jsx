@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
 import Badge from "@/components/atoms/Badge";
 import { toast } from "react-toastify";
-
 const CheckoutConfirmationPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -65,11 +64,14 @@ const CheckoutConfirmationPage = () => {
 
           {/* Order Details Card */}
           <div className="bg-surface rounded-lg shadow-sm border p-6 text-left mb-8">
-            <div className="flex justify-between items-start mb-6">
+<div className="flex justify-between items-start mb-6">
               <div>
                 <h2 className="text-xl font-semibold text-primary mb-1">Order Details</h2>
                 <p className="text-sm text-secondary">Order #{order.orderNumber}</p>
               </div>
+              <Badge variant="success" className="px-3 py-1">
+                Processing
+              </Badge>
               <Badge variant="success" className="px-3 py-1">
                 Confirmed
               </Badge>
@@ -153,17 +155,31 @@ const CheckoutConfirmationPage = () => {
                 <ApperIcon name="Package" size={16} className="text-accent mt-1" />
                 <p>Your order will be processed and shipped within 1-2 business days</p>
               </div>
-              <div className="flex items-start space-x-3">
+<div className="flex items-start space-x-3">
                 <ApperIcon name="Truck" size={16} className="text-accent mt-1" />
-                <p>Track your order using the tracking number that will be sent to your email</p>
+                <div>
+                  <p>Track your order using the tracking number: <strong>{order.trackingNumber}</strong></p>
+                  <p className="text-sm text-secondary mt-1">You can monitor your order progress in your order history</p>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Action Buttons */}
+{/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link to="/orders">
+              <Button
+                variant="primary"
+                className="flex items-center gap-2 w-full sm:w-auto"
+                size="lg"
+              >
+                <ApperIcon name="Package" size={20} />
+                View My Orders
+              </Button>
+            </Link>
             <Button
               onClick={() => navigate('/')}
+              variant="outline"
               className="flex items-center gap-2"
               size="lg"
             >
