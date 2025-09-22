@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'react-toastify/dist/ReactToastify.css';
+
+@layer base {
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+/* Toast customizations */
+.Toastify__toast-container {
+  font-family: 'Inter', system-ui, sans-serif;
+  z-index: 9999;
+}
+
+.Toastify__toast {
+  border-radius: 8px;
+  font-size: 14px;
+  padding: 16px;
+}
+
+.Toastify__toast--success {
+  background: #28a745;
+  color: white;
+}
+
+.Toastify__toast--error {
+  background: #dc3545;
+  color: white;
+}
+
+.Toastify__progress-bar {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Smooth animations */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar on cart drawer */
+.cart-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.cart-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

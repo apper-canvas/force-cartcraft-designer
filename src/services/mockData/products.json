@@ -1,0 +1,178 @@
+[
+  {
+    "Id": 1,
+    "title": "iPhone 15 Pro Max",
+    "price": 1199.99,
+    "originalPrice": 1299.99,
+    "image": "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=500&h=500&fit=crop&crop=center",
+    "category": "Electronics",
+    "description": "The most advanced iPhone ever with titanium design and powerful A17 Pro chip.",
+    "rating": 4.9,
+    "stock": 25
+  },
+  {
+    "Id": 2,
+    "title": "MacBook Air M3",
+    "price": 1099.99,
+    "originalPrice": 1199.99,
+    "image": "https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=500&h=500&fit=crop&crop=center",
+    "category": "Electronics",
+    "description": "Incredibly thin and light laptop with the revolutionary M3 chip.",
+    "rating": 4.8,
+    "stock": 18
+  },
+  {
+    "Id": 3,
+    "title": "AirPods Pro (2nd Gen)",
+    "price": 249.99,
+    "originalPrice": 279.99,
+    "image": "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=500&h=500&fit=crop&crop=center",
+    "category": "Electronics",
+    "description": "Next-level Active Noise Cancellation and Adaptive Transparency.",
+    "rating": 4.7,
+    "stock": 42
+  },
+  {
+    "Id": 4,
+    "title": "Premium Leather Jacket",
+    "price": 299.99,
+    "originalPrice": 399.99,
+    "image": "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=500&h=500&fit=crop&crop=center",
+    "category": "Clothing",
+    "description": "Genuine leather jacket with classic styling and premium craftsmanship.",
+    "rating": 4.6,
+    "stock": 12
+  },
+  {
+    "Id": 5,
+    "title": "Samsung 4K Smart TV",
+    "price": 699.99,
+    "originalPrice": 899.99,
+    "image": "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=500&h=500&fit=crop&crop=center",
+    "category": "Electronics",
+    "description": "55-inch 4K UHD Smart TV with HDR and voice control.",
+    "rating": 4.5,
+    "stock": 8
+  },
+  {
+    "Id": 6,
+    "title": "Nike Air Max 270",
+    "price": 149.99,
+    "originalPrice": 180.99,
+    "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&h=500&fit=crop&crop=center",
+    "category": "Footwear",
+    "description": "Comfortable running shoes with maximum Air cushioning.",
+    "rating": 4.4,
+    "stock": 35
+  },
+  {
+    "Id": 7,
+    "title": "Sony WH-1000XM5",
+    "price": 399.99,
+    "originalPrice": 449.99,
+    "image": "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=500&h=500&fit=crop&crop=center",
+    "category": "Electronics",
+    "description": "Industry-leading noise canceling headphones with superior sound.",
+    "rating": 4.8,
+    "stock": 22
+  },
+  {
+    "Id": 8,
+    "title": "Designer Sunglasses",
+    "price": 189.99,
+    "originalPrice": 249.99,
+    "image": "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500&h=500&fit=crop&crop=center",
+    "category": "Accessories",
+    "description": "Premium polarized sunglasses with UV protection.",
+    "rating": 4.3,
+    "stock": 28
+  },
+  {
+    "Id": 9,
+    "title": "Canon EOS R6",
+    "price": 2499.99,
+    "originalPrice": 2699.99,
+    "image": "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=500&h=500&fit=crop&crop=center",
+    "category": "Electronics",
+    "description": "Full-frame mirrorless camera with 4K video recording.",
+    "rating": 4.9,
+    "stock": 6
+  },
+  {
+    "Id": 10,
+    "title": "Luxury Watch",
+    "price": 899.99,
+    "originalPrice": 1199.99,
+    "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop&crop=center",
+    "category": "Accessories",
+    "description": "Swiss-made automatic watch with leather strap.",
+    "rating": 4.7,
+    "stock": 14
+  },
+  {
+    "Id": 11,
+    "title": "Gaming Keyboard",
+    "price": 129.99,
+    "originalPrice": 159.99,
+    "image": "https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=500&h=500&fit=crop&crop=center",
+    "category": "Electronics",
+    "description": "Mechanical gaming keyboard with RGB backlighting.",
+    "rating": 4.5,
+    "stock": 31
+  },
+  {
+    "Id": 12,
+    "title": "Wireless Mouse",
+    "price": 79.99,
+    "originalPrice": 99.99,
+    "image": "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500&h=500&fit=crop&crop=center",
+    "category": "Electronics",
+    "description": "Ergonomic wireless mouse with precision tracking.",
+    "rating": 4.2,
+    "stock": 48
+  },
+  {
+    "Id": 13,
+    "title": "Denim Jeans",
+    "price": 89.99,
+    "originalPrice": 120.99,
+    "image": "https://images.unsplash.com/photo-1542272604-787c3835535d?w=500&h=500&fit=crop&crop=center",
+    "category": "Clothing",
+    "description": "Premium denim jeans with modern fit and comfort stretch.",
+    "rating": 4.1,
+    "stock": 26
+  },
+  {
+    "Id": 14,
+    "title": "Wireless Charger",
+    "price": 39.99,
+    "originalPrice": 59.99,
+    "image": "https://images.unsplash.com/photo-1609592043942-2ad833e4b1d2?w=500&h=500&fit=crop&crop=center",
+    "category": "Electronics",
+    "description": "Fast wireless charging pad compatible with all Qi devices.",
+    "rating": 4.4,
+    "stock": 67
+  },
+  {
+    "Id": 15,
+    "title": "Fitness Tracker",
+    "price": 199.99,
+    "originalPrice": 249.99,
+    "image": "https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=500&h=500&fit=crop&crop=center",
+    "category": "Electronics",
+    "description": "Advanced fitness tracker with heart rate monitoring and GPS.",
+    "rating": 4.6,
+    "stock": 33
+  },
+  {
+    "Id": 16,
+    "title": "Coffee Maker",
+    "price": 179.99,
+    "originalPrice": 229.99,
+    "image": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=500&h=500&fit=crop&crop=center",
+    "category": "Home",
+    "description": "Programmable coffee maker with thermal carafe.",
+    "rating": 4.3,
+    "stock": 19
+  }
+]
