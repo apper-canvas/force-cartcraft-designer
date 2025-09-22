@@ -1,9 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
 
 const ProductCard = ({ product, onAddToCart }) => {
+  const navigate = useNavigate();
   const handleAddToCart = () => {
     if (onAddToCart) {
       onAddToCart(product);
@@ -37,13 +39,20 @@ const ProductCard = ({ product, onAddToCart }) => {
     );
   };
 
+const handleViewDetails = () => {
+    navigate(`/product/${product.Id}`);
+  };
+
   return (
     <motion.div
       whileHover={{ y: -4 }}
       transition={{ type: "spring", stiffness: 300, damping: 25 }}
       className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 group"
     >
-      <div className="relative overflow-hidden">
+      <div 
+        className="relative overflow-hidden cursor-pointer"
+        onClick={handleViewDetails}
+      >
         <img
           src={product.image}
           alt={product.title}
@@ -55,6 +64,13 @@ const ProductCard = ({ product, onAddToCart }) => {
             Save {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
           </div>
         )}
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300 flex items-center justify-center">
+          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="bg-white/90 backdrop-blur-sm rounded-full p-3">
+              <ApperIcon name="Eye" size={24} className="text-accent" />
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="p-6">
@@ -64,7 +80,10 @@ const ProductCard = ({ product, onAddToCart }) => {
           </span>
         </div>
 
-        <h3 className="text-lg font-bold text-primary mb-3 line-clamp-2 group-hover:text-accent transition-colors duration-200">
+        <h3 
+          className="text-lg font-bold text-primary mb-3 line-clamp-2 group-hover:text-accent transition-colors duration-200 cursor-pointer"
+          onClick={handleViewDetails}
+        >
           {product.title}
         </h3>
 
@@ -97,18 +116,33 @@ const ProductCard = ({ product, onAddToCart }) => {
           </div>
         </div>
 
-        <Button
-          onClick={handleAddToCart}
-          className="w-full group"
-          disabled={product.stock === 0}
-        >
-          <ApperIcon 
-            name="ShoppingCart" 
-            size={18}
-            className="transition-transform duration-200 group-hover:scale-110" 
-          />
-          {product.stock === 0 ? "Out of Stock" : "Add to Cart"}
-        </Button>
+        <div className="flex gap-3">
+          <Button
+            onClick={handleViewDetails}
+            variant="secondary"
+            className="flex-1 group"
+          >
+            <ApperIcon 
+              name="Eye" 
+              size={18}
+              className="transition-transform duration-200 group-hover:scale-110" 
+            />
+            View Details
+          </Button>
+          
+          <Button
+            onClick={handleAddToCart}
+            className="flex-1 group"
+            disabled={product.stock === 0}
+          >
+            <ApperIcon 
+              name="ShoppingCart" 
+              size={18}
+              className="transition-transform duration-200 group-hover:scale-110" 
+            />
+            {product.stock === 0 ? "Out of Stock" : "Add to Cart"}
+          </Button>
+        </div>
       </div>
     </motion.div>
   );
