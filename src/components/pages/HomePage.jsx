@@ -2,8 +2,12 @@ import React, { useState, useEffect } from "react";
 import Header from "@/components/organisms/Header";
 import ProductGrid from "@/components/organisms/ProductGrid";
 import CartDrawer from "@/components/organisms/CartDrawer";
+import ProductSidebar from "@/components/organisms/ProductSidebar";
+import SortControls from "@/components/molecules/SortControls";
+import ApperIcon from "@/components/ApperIcon";
+import Badge from "@/components/atoms/Badge";
 import cartService from "@/services/api/cartService";
-
+import productService from "@/services/api/productService";
 const HomePage = () => {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItemCount, setCartItemCount] = useState(0);
