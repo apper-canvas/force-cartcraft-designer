@@ -244,8 +244,8 @@ function OrderDetailsPage() {
                   <p className="text-sm text-secondary">Quantity: {item.quantity}</p>
                 </div>
                 <div className="text-right">
-                  <p className="font-semibold text-primary">${(item.price * item.quantity).toFixed(2)}</p>
-                  <p className="text-sm text-secondary">${item.price.toFixed(2)} each</p>
+<p className="font-semibold text-primary">${((item?.price ?? 0) * (item?.quantity ?? 0)).toFixed(2)}</p>
+                  <p className="text-sm text-secondary">${(item?.price ?? 0).toFixed(2)} each</p>
                 </div>
               </motion.div>
             ))}
@@ -277,22 +277,22 @@ function OrderDetailsPage() {
           <div className="bg-surface rounded-lg shadow-sm p-6">
             <h2 className="text-xl font-semibold text-primary mb-4">Order Summary</h2>
             <div className="space-y-3">
-              <div className="flex justify-between">
+<div className="flex justify-between">
                 <span className="text-secondary">Subtotal</span>
-                <span>${order.totals.subtotal.toFixed(2)}</span>
+                <span>${(order?.totals?.subtotal ?? 0).toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-secondary">Shipping</span>
-                <span>${order.totals.shipping.toFixed(2)}</span>
+                <span>${(order?.totals?.shipping ?? 0).toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-secondary">Tax</span>
-                <span>${order.totals.tax.toFixed(2)}</span>
+                <span>${(order?.totals?.tax ?? 0).toFixed(2)}</span>
               </div>
               <hr />
               <div className="flex justify-between font-semibold text-lg">
                 <span>Total</span>
-                <span className="text-accent">${order.totals.grandTotal.toFixed(2)}</span>
+                <span className="text-accent">${(order?.totals?.grandTotal ?? 0).toFixed(2)}</span>
               </div>
               
               {/* Payment Method */}
