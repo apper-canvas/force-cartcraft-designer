@@ -10,10 +10,16 @@ const Header = ({ cartItemCount, onCartToggle, onSearch }) => {
   const [orderCount, setOrderCount] = useState(0);
 
   useEffect(() => {
-    const fetchOrderCount = async () => {
-      try {
-const orders = await orderService.getOrders();
+const fetchOrderCount = async () => {
+    try {
+      // Check if orderService and getOrders method exist
+      if (orderService && typeof orderService.getOrders === 'function') {
+        const orders = await orderService.getOrders();
         setOrderCount(orders?.length || 0);
+      } else {
+        console.warn('orderService.getOrders is not available');
+        setOrderCount(0);
+      }
       } catch (error) {
         console.error('Failed to fetch order count:', error);
         setOrderCount(0);
