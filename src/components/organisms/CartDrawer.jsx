@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
 import CartItem from "@/components/molecules/CartItem";
@@ -7,7 +8,8 @@ import cartService from "@/services/api/cartService";
 import { toast } from "react-toastify";
 
 const CartDrawer = ({ isOpen, onClose, onCartUpdate }) => {
-  const [cart, setCart] = useState({ items: [], totalItems: 0, totalPrice: 0 });
+const [cart, setCart] = useState({ items: [], totalItems: 0, totalPrice: 0 });
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
   const loadCart = async () => {
@@ -183,7 +185,14 @@ const CartDrawer = ({ isOpen, onClose, onCartUpdate }) => {
                   </div>
                   
                   <div className="space-y-3">
-                    <Button className="w-full" size="lg">
+<Button 
+                      className="w-full" 
+                      size="lg"
+                      onClick={() => {
+                        onClose();
+                        navigate('/checkout/shipping');
+                      }}
+                    >
                       <ApperIcon name="CreditCard" size={20} />
                       Proceed to Checkout
                     </Button>

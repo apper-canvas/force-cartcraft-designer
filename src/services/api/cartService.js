@@ -105,7 +105,7 @@ class CartService {
     return { ...this.cart, items: [...this.cart.items] };
   }
 
-  async clearCart() {
+async clearCart() {
     await this.delay(100);
     
     this.cart = {
@@ -115,6 +115,11 @@ class CartService {
     };
     
     this.saveCart();
+    return { ...this.cart };
+  }
+
+  async getCartForCheckout() {
+    await this.delay(100);
     return { ...this.cart };
   }
 
